@@ -1,5 +1,7 @@
-// Initialize configuration
+
 const config = window.VALENTINE_CONFIG;
+emailjs.init("xJpVfAqDTw_S8wDcz");
+
 
 // Validate configuration
 function validateConfig() {
@@ -8,7 +10,7 @@ function validateConfig() {
     // Check required fields
     if (!config.valentineName) {
         warnings.push("Valentine's name is not set! Using default.");
-        config.valentineName = "My Love";
+        // config.valentineName = "My Love";
     }
 
     // Validate colors
@@ -59,7 +61,7 @@ window.addEventListener('DOMContentLoaded', () => {
     validateConfig();
 
     // Set texts from config
-    document.getElementById('valentineTitle').textContent = `${config.valentineName}, my love...`;
+    document.getElementById('valentineTitle').textContent = `${config.valentineName}`;
     
     // Set first question texts
     document.getElementById('question1Text').textContent = config.questions.first.text;
@@ -80,8 +82,6 @@ window.addEventListener('DOMContentLoaded', () => {
     // Create initial floating elements
     createFloatingElements();
 
-    // Setup music player
-    setupMusicPlayer();
 });
 
 // Create floating hearts and bears
@@ -240,3 +240,27 @@ function setupMusicPlayer() {
         }
     });
 } 
+
+
+
+function sendmail(message){
+    console.log(message)
+     emailjs.send(
+            "service_q0mgy27",
+            "template_vtuktrn",
+            {
+                // name,
+                // email,
+                // subject,
+                message: message,
+            },
+            "xJpVfAqDTw_S8wDcz"
+        )
+            .then(() => {
+                alert("Email sent successfully!");
+            })
+            .catch((error) => {
+                console.error(error);
+                alert("Failed to send email");
+            });
+}
