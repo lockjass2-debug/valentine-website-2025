@@ -281,6 +281,7 @@ function showHugScreen() {
 
 function noBtn() {
     const yesButton = document.getElementById("yesBtn1");
+    const nobutton = document.getElementById("noBtn1")
 
     yesScale += 1; // increase size gradually
     yesButton.style.transform = `scale(${yesScale})`;
@@ -288,6 +289,7 @@ function noBtn() {
 
     // Optional: make it a bit dramatic 😈
     if (yesScale > 2.5) {
+        nobutton.classList.add("hidden");
         yesButton.textContent = "You have no choice now 😘";
     }
 }
