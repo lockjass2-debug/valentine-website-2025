@@ -13,6 +13,9 @@
     --bounce-speed: 0.5s;
     --heart-explosion-size: 1.5;
 }
+.hidden {
+    display: none;
+}
 
 body {
     margin: 0;
