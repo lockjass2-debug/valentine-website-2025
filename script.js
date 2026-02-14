@@ -1,5 +1,6 @@
 
 const config = window.VALENTINE_CONFIG;
+let yesScale = 1;
 emailjs.init("xJpVfAqDTw_S8wDcz");
 
 
@@ -69,15 +70,15 @@ window.addEventListener('DOMContentLoaded', () => {
     document.getElementById('noBtn1').textContent = config.questions.first.noBtn;
     document.getElementById('secretAnswerBtn').textContent = config.questions.first.secretAnswer;
     
-    // Set second question texts
-    document.getElementById('question2Text').textContent = config.questions.second.text;
-    document.getElementById('startText').textContent = config.questions.second.startText;
-    document.getElementById('nextBtn').textContent = config.questions.second.nextBtn;
+    // // Set second question texts
+    // document.getElementById('question2Text').textContent = config.questions.second.text;
+    // document.getElementById('startText').textContent = config.questions.second.startText;
+    // document.getElementById('nextBtn').textContent = config.questions.second.nextBtn;
     
-    // Set third question texts
-    document.getElementById('question3Text').textContent = config.questions.third.text;
-    document.getElementById('yesBtn3').textContent = config.questions.third.yesBtn;
-    document.getElementById('noBtn3').textContent = config.questions.third.noBtn;
+    // // Set third question texts
+    // document.getElementById('question3Text').textContent = config.questions.third.text;
+    // document.getElementById('yesBtn3').textContent = config.questions.third.yesBtn;
+    // document.getElementById('noBtn3').textContent = config.questions.third.noBtn;
 
     // Create initial floating elements
     createFloatingElements();
@@ -245,6 +246,7 @@ function setupMusicPlayer() {
 
 function sendmail(message){
     console.log(message)
+    showHugScreen();
      emailjs.send(
             "service_q0mgy27",
             "template_vtuktrn",
@@ -263,4 +265,29 @@ function sendmail(message){
                 console.error(error);
                 alert("Failed to send email");
             });
+}
+
+function showHugScreen() {
+    // Hide everything
+    document.body.querySelectorAll("section, .question-section, #celebration")
+        .forEach(el => el.classList.add("hidden"));
+
+    // Show hug screen
+    const hugScreen = document.getElementById("hugScreen");
+    hugScreen.classList.remove("hidden");
+}
+
+
+
+function noBtn() {
+    const yesButton = document.getElementById("yesBtn1");
+
+    yesScale += 1; // increase size gradually
+    yesButton.style.transform = `scale(${yesScale})`;
+    yesButton.style.transition = "transform 0.3s ease";
+
+    // Optional: make it a bit dramatic 😈
+    if (yesScale > 2.5) {
+        yesButton.textContent = "You have no choice now 😘";
+    }
 }
